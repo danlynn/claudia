@@ -5,9 +5,9 @@
 
 This image contains everything you need to have a working development environment for claudia.js projects.  The container's working dir is /myapp so that you can setup a volume mapping your laptop's project dir to /myapp in the container.
 
-claudia 2.9.1 + node 4.8.0/6.10.0 + npm 2.15.11/3.10.10 + bower 1.8.0 + phantomjs 2.1.7 + watchman 3.5.0
+claudia 2.9.1 + node 4.8.0/6.10.0 + npm 2.15.11/3.10.10 + bower 1.8.0 + phantomjs 2.1.7 + watchman 3.5.0 *******
 
-![claudia.js logo](https://raw.githubusercontent.com/danlynn/claudiajs/master/claudiajs.png)
+![claudia.js logo](https://raw.githubusercontent.com/danlynn/claudia/master/claudiajs.png)
 
 
 ## How to use

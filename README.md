@@ -28,7 +28,7 @@ $ docker run -ti -v "$(pwd):/myapp" danlynn/claudia:latest install-claudia-app-t
 
 This will add the following structure in your laptop's current directory:
 
-<pre>
+```
 .aws
     config
     credentials
@@ -38,7 +38,7 @@ TEMPLATE-README.md
 bash
 logs
 synctime
-</pre>
+```
 
 This gives you some aws config files that will be specific to only this project.  It also gives you the `bash` and `logs` commands.  Note that you can alternatively provide a specific claudia version by replacing `latest` in the command above with a Claudia.js version like `2.9.0`.  If any of these files already exist in the current directory (like `.gitignore` or `.aws/credentials`) then they will NOT be overwritten by the template files.
 
@@ -46,11 +46,11 @@ This gives you some aws config files that will be specific to only this project.
 
 Next modify the `.aws/credentials` file adding your own `aws_access_key_id` and `aws_secret_access_key`.
 
-<pre>
+```
 [claudia]
 aws_access_key_id = YOUR_ACCESS_KEY
 aws_secret_access_key = YOUR_ACCESS_SECRET
-</pre>
+```
 
 By default, the `.aws/config` file sets the aws region to 'us-east-1'.  However, you can feel free to make whatever changes you desire.
 
@@ -62,11 +62,11 @@ You are now ready to create a claudia.js lambda function.  This is adapted from 
 
 2. Copy the following into the JS file:
 
-   <pre>
+   ```
    exports.handler = function (event, context) {
       context.succeed('hello world');
    };
-   </pre>
+   ```
 
 3. Launch the claudia container bash shell:
 
@@ -153,11 +153,11 @@ Note that the `claudia test-lambda` command does not need you to specify which l
 
 Modify the contents of your `hello-world.js` file as follows (add the word "again"):
 
-<pre>
+```
 exports.handler = function (event, context) {
   context.succeed('hello again world');
 };
-</pre>
+```
 
 Then redeploy the code changes to aws with:
 
@@ -236,9 +236,9 @@ root@ea36c452ab85:/myapp# logs
 
 Sometimes, you will receive a message like this when executing commands that interact with aws:
    
-<pre>
+```
 An error occurred (InvalidSignatureException) when calling the FilterLogEvents operation: Signature expired: 20170406T184748Z is now earlier than 20170406T190807Z (20170406T191307Z - 5 min.)
-</pre>
+```
    
 When this occurs, you can correct the situation by simply synchronizing the clock of the container with the `synctime` shortcut:
    
@@ -250,11 +250,11 @@ Note that both the `bash` and `logs` shortcut scripts call `synctime` before lau
 
 Another way to avoid sync issues when executing commands that interact with aws is to add the following at the top of your lambda function before the export:
 
-<pre>
+```
 // Fix: InvalidSignatureException: Signature expired: 20170223T053320Z is now earlier than 20170223T150109Z (20170223T150609Z - 5 min.)
 const AWS = require('aws-sdk');
 AWS.config.update({
   region: 'us-east-1',
   correctClockSkew: true
 });
-</pre>
+```

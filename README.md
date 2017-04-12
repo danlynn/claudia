@@ -26,7 +26,7 @@ $ cd hello-world
 $ docker run -ti -v "$(pwd):/myapp" danlynn/claudia:latest install-claudia-app-template
 ```
 
-This will add the following structure in the current directory:
+This will add the following structure in your laptop's current directory:
 
 <pre>
 .aws
@@ -40,7 +40,7 @@ logs
 synctime
 </pre>
 
-This gives you some aws config files that will be specific to only this project.  It also gives you the `bash` and `logs` commands.  Note that you can alternatively provide a specific claudia version by replacing `latest` in the command above with a Claudia.js version like `2.9.0`.
+This gives you some aws config files that will be specific to only this project.  It also gives you the `bash` and `logs` commands.  Note that you can alternatively provide a specific claudia version by replacing `latest` in the command above with a Claudia.js version like `2.9.0`.  If any of these files already exist in the current directory (like `.gitignore` or `.aws/credentials`) then they will NOT be overwritten by the template files.
 
 ### 2. Configure aws credentials and region
 
@@ -58,7 +58,7 @@ By default, the `.aws/config` file sets the aws region to 'us-east-1'.  However,
 
 You are now ready to create a claudia.js lambda function.  This is adapted from the [Hello World AWS Lambda function](https://www.claudiajs.com/tutorials/hello-world-lambda.html) tutorial on the Claudia.js website.
 
-1. Create a new JS file named 'hello-world.js' to hold your lambda function.
+1. Create a new file named `hello-world.js` in your laptop's project folder to hold your lambda function.
 
 2. Copy the following into the JS file:
 
@@ -68,21 +68,7 @@ You are now ready to create a claudia.js lambda function.  This is adapted from 
    };
    </pre>
 
-3. Optionally synchronize container clock
-
-   Sometimes, you will receive a message like this when executing commands that interact with aws:
-   
-   <pre>
-   An error occurred (InvalidSignatureException) when calling the FilterLogEvents operation: Signature expired: 20170406T184748Z is now earlier than 20170406T190807Z (20170406T191307Z - 5 min.)
-   </pre>
-   
-   When this occurs, you can correct the situation by simply synchronizing the clock of the container with the `synctime` shortcut:
-   
-   ```
-   $ synctime
-   ```
-
-4. Launch the claudia container bash shell:
+3. Launch the claudia container bash shell:
 
    ```
    $ ./bash
@@ -90,7 +76,7 @@ You are now ready to create a claudia.js lambda function.  This is adapted from 
    
    Don't forget the preceding `./` so that you execute the shortcut instead of launching a local bash shell.
    
-5. Create a `package.json` file with the `npm init` command.  You can simply enter "hello-world" at the 'name' prompt then hit enter accepting the defaults for all subsequent fields:
+4. Create a `package.json` file with the `npm init` command.  You can simply enter "hello-world" at the 'name' prompt then hit enter accepting the defaults for all subsequent fields:
 
    ```
    root@3aeafad121e8:/myapp# npm init
@@ -126,7 +112,7 @@ You are now ready to create a claudia.js lambda function.  This is adapted from 
    npm info ok 
    ```
       
-6. Deploy the lambda function to aws using claudia in the container shell:
+5. Deploy the lambda function to aws using claudia in the container shell:
 
    ```
    root@3aeafad121e8:/myapp# claudia create --region us-east-1 --handler hello-world.handler
@@ -162,6 +148,50 @@ root@3aeafad121e8:/myapp# claudia test-lambda
 This command will output the response from running the lambda function.
 
 Note that the `claudia test-lambda` command does not need you to specify which lambda function to execute because claudia stored that information into `claudia.json` when you deployed it.
+
+## Making a change and redeploying
+
+Modify the contents of your `hello-world.js` file as follows (add the word "again"):
+
+<pre>
+exports.handler = function (event, context) {
+  context.succeed('hello again world');
+};
+</pre>
+
+Then redeploy the code changes to aws with:
+
+```bash
+root@3aeafad121e8:/myapp# claudia update
+
+updating Lambda	lambda.updateFunctionCode	FunctionName=hello-world
+{
+  "FunctionName": "hello-world",
+  "FunctionArn": "arn:aws:lambda:us-east-1:018867421119:function:hello-world:2",
+  "Runtime": "nodejs4.3",
+  "Role": "arn:aws:iam::018867421119:role/hello-world-executor",
+  "Handler": "hello-world.handler",
+  "CodeSize": 1928,
+  "Description": "",
+  "Timeout": 3,
+  "MemorySize": 128,
+  "LastModified": "2017-04-12T03:18:41.060+0000",
+  "CodeSha256": "XzMlQlas26zQep/9A3faz9DTBkctIsOdev5kppZNpBQ=",
+  "Version": "2",
+  "KMSKeyArn": null
+}
+```
+
+And test again with:
+
+```bash
+root@3aeafad121e8:/myapp# claudia test-lambda
+{
+  "StatusCode": 200,
+  "Payload": "\"hello again world\""
+}
+
+```
 
 ## Tailing the lambda logs
 
@@ -203,6 +233,20 @@ root@ea36c452ab85:/myapp# logs
 ```
 
 ## Troubleshooting
+
+Sometimes, you will receive a message like this when executing commands that interact with aws:
+   
+<pre>
+An error occurred (InvalidSignatureException) when calling the FilterLogEvents operation: Signature expired: 20170406T184748Z is now earlier than 20170406T190807Z (20170406T191307Z - 5 min.)
+</pre>
+   
+When this occurs, you can correct the situation by simply synchronizing the clock of the container with the `synctime` shortcut:
+   
+```
+$ synctime
+```
+
+Note that both the `bash` and `logs` shortcut scripts call `synctime` before launching the docker container.  So, chances are that you won't need to be calling `synctime` yourself.
 
 Another way to avoid sync issues when executing commands that interact with aws is to add the following at the top of your lambda function before the export:
 

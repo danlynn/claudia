@@ -1,11 +1,12 @@
 ## Supported tags and respective `Dockerfile` links
 
-+ [`2.9.0`,`latest` (2.9.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.9.0/Dockerfile)
++ [`2.11.0`,`latest` (2.11.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.11.0/Dockerfile)
++ [`2.9.0` (2.9.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.9.0/Dockerfile)
 
 
 This image contains everything you need to have a working development environment for claudia.js projects.  The container's working dir is `/myapp` so that you can setup a volume mapping your laptop's project dir to `/myapp` in the container.
 
-claudia 2.9.0 + node 4.3.2 + npm 2.14.12 + aws-cli 1.11.75 + python 2.7.9 + cwtail
+claudia 2.11.0 + node 4.3.2 + npm 2.14.12 + aws-cli 1.11.75 + python 2.7.9 + cwtail
 
 ![claudia.js logo](https://raw.githubusercontent.com/danlynn/claudia/master/claudiajs.png)
 

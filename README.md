@@ -81,8 +81,6 @@ You are now ready to create a claudia.js lambda function.  This is adapted from 
    ```
    root@3aeafad121e8:/myapp# npm init
    
-   ...
-   
    name: (myapp) hello-world
    version: (1.0.0) 
    description: 
@@ -105,7 +103,6 @@ You are now ready to create a claudia.js lambda function.  This is adapted from 
      "author": "",
      "license": "ISC"
    }
-   
    
    Is this ok? (yes) 
    npm info init written successfully

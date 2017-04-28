@@ -1,6 +1,7 @@
 ## Supported tags and respective `Dockerfile` links
 
-+ [`2.11.0`,`latest` (2.11.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.11.0/Dockerfile)
++ [`2.12.1`,`latest` (2.12.1/Dockerfile)](https://github.com/danlynn/claudia/blob/2.12.1/Dockerfile)
++ [`2.11.0` (2.11.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.11.0/Dockerfile)
 + [`2.9.0` (2.9.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.9.0/Dockerfile)
 
 

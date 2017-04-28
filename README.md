@@ -242,7 +242,7 @@ An error occurred (InvalidSignatureException) when calling the FilterLogEvents o
 When this occurs, you can correct the situation by simply synchronizing the clock of the container with the `synctime` shortcut:
    
 ```
-$ synctime
+$ ./synctime
 ```
 
 Note that both the `bash` and `logs` shortcut scripts call `synctime` before launching the docker container.  So, chances are that you won't need to be calling `synctime` yourself.

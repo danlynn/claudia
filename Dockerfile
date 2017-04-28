@@ -30,7 +30,7 @@ RUN \
 
 # create install-claudia-app-template command
 RUN \
-	echo "#!/usr/bin/env bash\necho '2.11.0' > /myapp/.claudia-version && curl -LsS https://github.com/danlynn/claudia-app-template/archive/1.0.0.tar.gz > /usr/local/src/claudia-app-template.tar.gz\ntar -xz --skip-old-files --strip-components=1 --transform=s/README/TEMPLATE-README/ -f /usr/local/src/claudia-app-template.tar.gz -C /myapp" > /usr/local/bin/install-claudia-app-template &&\
+	echo "#!/usr/bin/env bash\necho '2.11.0' > /myapp/.claudia-version && curl -LsS https://github.com/danlynn/claudia-app-template/archive/1.0.1.tar.gz > /usr/local/src/claudia-app-template.tar.gz\ntar -xz --skip-old-files --strip-components=1 --transform=s/README/TEMPLATE-README/ -f /usr/local/src/claudia-app-template.tar.gz -C /myapp" > /usr/local/bin/install-claudia-app-template &&\
 	chmod a+x /usr/local/bin/install-claudia-app-template
 
 # create logs command

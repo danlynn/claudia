@@ -7,7 +7,7 @@
 
 This image contains everything you need to have a working development environment for claudia.js projects.  The container's working dir is `/myapp` so that you can setup a volume mapping your laptop's project dir to `/myapp` in the container.
 
-claudia 2.11.0 + node 4.3.2 + npm 2.14.12 + aws-cli 1.11.75 + python 2.7.9 + cwtail
+claudia 2.12.1 + node 4.3.2 + npm 2.14.12 + aws-cli 1.11.75 + python 2.7.9 + cwtail
 
 ![claudia.js logo](https://raw.githubusercontent.com/danlynn/claudia/master/claudiajs.png)
 

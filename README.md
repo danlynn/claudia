@@ -1,3 +1,7 @@
+This image contains everything you need to have a working development environment for claudia.js projects.  The container's working dir is `/myapp` so that you can setup a volume mapping your laptop's project dir to `/myapp` in the container.
+
+![stars](https://img.shields.io/docker/stars/danlynn/claudia.svg) ![pulls](https://img.shields.io/docker/pulls/danlynn/claudia.svg) ![automated](https://img.shields.io/docker/automated/danlynn/claudia.svg) ![build](https://img.shields.io/docker/build/danlynn/claudia.svg)
+
 ## Supported tags and respective `Dockerfile` links
 
 + [`2.13.0`,`latest` (2.13.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.13.0/Dockerfile)
@@ -5,8 +9,6 @@
 + [`2.11.0` (2.11.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.11.0/Dockerfile)
 + [`2.9.0` (2.9.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.9.0/Dockerfile)
 
-
-This image contains everything you need to have a working development environment for claudia.js projects.  The container's working dir is `/myapp` so that you can setup a volume mapping your laptop's project dir to `/myapp` in the container.
 
 claudia 2.13.0 + node 6.11.0 + npm 3.10.10 + aws-cli 1.11.75 + python 2.7.9 + smoketail 0.1.0
 

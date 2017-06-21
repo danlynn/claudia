@@ -1,4 +1,4 @@
-FROM node:4.3.2
+FROM node:6.11.0
 MAINTAINER Dan Lynn <docker@danlynn.org>
 
 WORKDIR /myapp
@@ -20,20 +20,20 @@ RUN \
 	unzip awscli-bundle.zip &&\
 	./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-# install cwtail logging (see: https://github.com/danlynn/cwtail)
+# install smoketail logging (see: https://github.com/cinema6/smoketail)
 RUN \
-	npm install -g git+https://github.com/danlynn/cwtail.git
+	npm install -g smoketail@0.1.0
 
 # install claudia.js
 RUN \
-	npm install claudia@2.12.1 -g
+	npm install claudia@2.13.0 -g
 
 # create install-claudia-app-template command
 RUN \
-	echo "#!/usr/bin/env bash\necho '2.12.1' > /myapp/.claudia-version && curl -LsS https://github.com/danlynn/claudia-app-template/archive/1.0.1.tar.gz > /usr/local/src/claudia-app-template.tar.gz\ntar -xz --skip-old-files --strip-components=1 --transform=s/README/TEMPLATE-README/ -f /usr/local/src/claudia-app-template.tar.gz -C /myapp" > /usr/local/bin/install-claudia-app-template &&\
+	echo "#!/usr/bin/env bash\necho '2.13.0' > /myapp/.claudia-version && curl -LsS https://github.com/danlynn/claudia-app-template/archive/1.0.1.tar.gz > /usr/local/src/claudia-app-template.tar.gz\ntar -xz --skip-old-files --strip-components=1 --transform=s/README/TEMPLATE-README/ -f /usr/local/src/claudia-app-template.tar.gz -C /myapp" > /usr/local/bin/install-claudia-app-template &&\
 	chmod a+x /usr/local/bin/install-claudia-app-template
 
 # create logs command
 RUN \
-	echo '#!/usr/bin/env bash\nif [ -e "/myapp/claudia.json" ]; then\nlambda_name=$(grep -P -o "(?<=\"name\":\s\").*(?=\")" /myapp/claudia.json | tr -d "\r")\ncwtail -tf "/aws/lambda/$lambda_name"\nelse\necho "ERROR: claudia.json not found. Can not show logs until \"claudia create\" command has deployed lambda."\nfi' > /usr/local/bin/logs &&\
+	echo '#!/usr/bin/env bash\nif [ -e "/myapp/claudia.json" ]; then\nlambda_name=$(grep -P -o "(?<=\"name\":\s\").*(?=\")" /myapp/claudia.json | tr -d "\r")\nsmoketail -f -t -10 "/aws/lambda/$lambda_name"\nelse\necho "ERROR: claudia.json not found. Can not show logs until \"claudia create\" command has deployed lambda."\nfi' > /usr/local/bin/logs &&\
 	chmod a+x /usr/local/bin/logs

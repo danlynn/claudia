@@ -1,13 +1,14 @@
 ## Supported tags and respective `Dockerfile` links
 
-+ [`2.12.1`,`latest` (2.12.1/Dockerfile)](https://github.com/danlynn/claudia/blob/2.12.1/Dockerfile)
++ [`2.13.0`,`latest` (2.13.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.13.0/Dockerfile)
++ [`2.12.1` (2.12.1/Dockerfile)](https://github.com/danlynn/claudia/blob/2.12.1/Dockerfile)
 + [`2.11.0` (2.11.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.11.0/Dockerfile)
 + [`2.9.0` (2.9.0/Dockerfile)](https://github.com/danlynn/claudia/blob/2.9.0/Dockerfile)
 
 
 This image contains everything you need to have a working development environment for claudia.js projects.  The container's working dir is `/myapp` so that you can setup a volume mapping your laptop's project dir to `/myapp` in the container.
 
-claudia 2.12.1 + node 4.3.2 + npm 2.14.12 + aws-cli 1.11.75 + python 2.7.9 + cwtail
+claudia 2.13.0 + node 6.11.0 + npm 3.10.10 + aws-cli 1.11.75 + python 2.7.9 + smoketail 0.1.0
 
 ![claudia.js logo](https://raw.githubusercontent.com/danlynn/claudia/master/claudiajs.png)
 
@@ -201,16 +202,31 @@ When in a terminal window on your laptop, from your project's directory, simply 
 ```bash
 $ ./logs
 
-Mon Apr 10 22:05:00 UTC 2017
-[Thu Apr 06 2017 20:19:28 GMT+0000 (UTC)] START RequestId: 55cef719-1b06-11e7-8c6d-bb2dae4ced5e Version: $LATEST
-[Thu Apr 06 2017 20:19:28 GMT+0000 (UTC)] END RequestId: 55cef719-1b06-11e7-8c6d-bb2dae4ced5e
-[Thu Apr 06 2017 20:19:28 GMT+0000 (UTC)] REPORT RequestId: 55cef719-1b06-11e7-8c6d-bb2dae4ced5e	Duration: 10.81 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 16 MB	
-[Mon Apr 10 2017 18:31:18 GMT+0000 (UTC)] START RequestId: e2fc86ca-1e1b-11e7-a0c2-25da365b9505 Version: $LATEST
-[Mon Apr 10 2017 18:31:18 GMT+0000 (UTC)] END RequestId: e2fc86ca-1e1b-11e7-a0c2-25da365b9505
-[Mon Apr 10 2017 18:31:18 GMT+0000 (UTC)] REPORT RequestId: e2fc86ca-1e1b-11e7-a0c2-25da365b9505	Duration: 14.15 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 16 MB	
-[Mon Apr 10 2017 18:38:35 GMT+0000 (UTC)] START RequestId: e765b83c-1e1c-11e7-bf14-85f7ae2e31d9 Version: $LATEST
-[Mon Apr 10 2017 18:38:35 GMT+0000 (UTC)] END RequestId: e765b83c-1e1c-11e7-bf14-85f7ae2e31d9
-[Mon Apr 10 2017 18:38:35 GMT+0000 (UTC)] REPORT RequestId: e765b83c-1e1c-11e7-bf14-85f7ae2e31d9	Duration: 37.22 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 16 MB	
+2017-06-20T21:39:14.156Z START RequestId: e7732057-5600-11e7-ad11-3308ceab63aa Version: $LATEST
+2017-06-20T21:39:14.393Z	e7732057-5600-11e7-ad11-3308ceab63aa	====== coalescingImageHandler: begin: url = /image/100/0/image.jpg?card_number=0000000220&retailer_id=767
+2017-06-20T21:39:14.393Z	e7732057-5600-11e7-ad11-3308ceab63aa	coalescingImageHandler: invoke getRenderRoute: before
+2017-06-20T21:39:14.454Z	e7732057-5600-11e7-ad11-3308ceab63aa	coalescingImageHandler: invoke getRenderRoute: after
+2017-06-20T21:39:14.454Z	e7732057-5600-11e7-ad11-3308ceab63aa	coalescingImageHandler: invoke render: before
+2017-06-20T21:39:14.454Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: start
+2017-06-20T21:39:14.454Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke redis.get(redisKey): before
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke redis.get(redisKey): after
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke removeRedisKeyIfExists: before
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	removeRedisKeyIfExists: start
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	removeRedisKeyIfExists: end
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke removeRedisKeyIfExists: after
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke removeS3IfExists: before
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	removeS3IfExists: start
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	removeS3IfExists: end
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke removeS3IfExists: after
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke renderImageUnlessAlreadyRendered: before
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	renderImageUnlessAlreadyRendered: start
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	renderImageUnlessAlreadyRendered: end
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: invoke renderImageUnlessAlreadyRendered: after
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	render: end
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	coalescingImageHandler: invoke render: after
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	====== coalescingImageHandler: end
+2017-06-20T21:39:14.473Z END RequestId: e7732057-5600-11e7-ad11-3308ceab63aa
+2017-06-20T21:39:14.473Z REPORT RequestId: e7732057-5600-11e7-ad11-3308ceab63aa	Duration: 313.01 ms	Billed Duration: 400 ms 	Memory Size: 128 MB	Max Memory Used: 45 MB	
 ```
 
 Type `ctrl-C` to stop tailing the logs.  The output will be updated about every 5 seconds as new log entries appear.
@@ -220,16 +236,23 @@ You can also start tailing the logs while in the docker container's bash session
 ```bash
 root@ea36c452ab85:/myapp# logs
 
-[Thu Apr 06 2017 20:19:28 GMT+0000 (UTC)] START RequestId: 55cef719-1b06-11e7-8c6d-bb2dae4ced5e Version: $LATEST
-[Thu Apr 06 2017 20:19:28 GMT+0000 (UTC)] END RequestId: 55cef719-1b06-11e7-8c6d-bb2dae4ced5e
-[Thu Apr 06 2017 20:19:28 GMT+0000 (UTC)] REPORT RequestId: 55cef719-1b06-11e7-8c6d-bb2dae4ced5e	Duration: 10.81 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 16 MB	
-[Mon Apr 10 2017 18:31:18 GMT+0000 (UTC)] START RequestId: e2fc86ca-1e1b-11e7-a0c2-25da365b9505 Version: $LATEST
-[Mon Apr 10 2017 18:31:18 GMT+0000 (UTC)] END RequestId: e2fc86ca-1e1b-11e7-a0c2-25da365b9505
-[Mon Apr 10 2017 18:31:18 GMT+0000 (UTC)] REPORT RequestId: e2fc86ca-1e1b-11e7-a0c2-25da365b9505	Duration: 14.15 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 16 MB	
-[Mon Apr 10 2017 18:38:35 GMT+0000 (UTC)] START RequestId: e765b83c-1e1c-11e7-bf14-85f7ae2e31d9 Version: $LATEST
-[Mon Apr 10 2017 18:38:35 GMT+0000 (UTC)] END RequestId: e765b83c-1e1c-11e7-bf14-85f7ae2e31d9
-[Mon Apr 10 2017 18:38:35 GMT+0000 (UTC)] REPORT RequestId: e765b83c-1e1c-11e7-bf14-85f7ae2e31d9	Duration: 37.22 ms	Billed Duration: 100 ms 	Memory Size: 128 MB	Max Memory Used: 16 MB	
+2017-06-20T21:39:14.156Z START RequestId: e7732057-5600-11e7-ad11-3308ceab63aa Version: $LATEST
+2017-06-20T21:39:14.393Z	e7732057-5600-11e7-ad11-3308ceab63aa	====== coalescingImageHandler: begin: url = /image/100/0/image.jpg?card_number=0000000220&retailer_id=767
+2017-06-20T21:39:14.393Z	e7732057-5600-11e7-ad11-3308ceab63aa	coalescingImageHandler: invoke getRenderRoute: before
+...
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	coalescingImageHandler: invoke render: after
+2017-06-20T21:39:14.473Z	e7732057-5600-11e7-ad11-3308ceab63aa	====== coalescingImageHandler: end
+2017-06-20T21:39:14.473Z END RequestId: e7732057-5600-11e7-ad11-3308ceab63aa
+2017-06-20T21:39:14.473Z REPORT RequestId: e7732057-5600-11e7-ad11-3308ceab63aa	Duration: 313.01 ms	Billed Duration: 400 ms 	Memory Size: 128 MB	Max Memory Used: 45 MB	
 ```
+
+The `./logs` command uses smoketail to actively tail all the streams in the CloudWatch log group associated with your lambda function.  However, if you need to tail just a single stream or apply a filter then you can use the `smoketail` command directly in the container's bash session via something like:
+
+```bash
+root@ea36c452ab85:/myapp# smoketail -f /aws/lambda/<lambda-name>
+```
+
+See: [https://github.com/cinema6/smoketail](https://github.com/cinema6/smoketail) more additional smoketail cli usage examples.
 
 ## Troubleshooting
 
